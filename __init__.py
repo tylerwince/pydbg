@@ -1,24 +1,33 @@
+"""pydbg is an implementation of the Rust2018 builtin `dbg` for Python."""
 import inspect
 
-
-def dbg(o, fancy=False):
-    if not fancy:
-        for idx, el in enumerate(reversed(inspect.stack())):
-            if "dbg" in el.code_context[0]:
-                var_name = el.code_context[0][el.code_context[0].find("(")+1:el.code_context[0].find(")")]
-                print(f"[{el.filename}:{el.lineno}] {var_name} = {o}  {type(o)}")
-                break
-    else:
-        # TODO(tyler): Build the entire callstack
-        # TODO(tyler): colorize the output
-        """
-        [filename:lineno]
-
-            var_name = o
-
-            call_stack
-
-        """
-        out = ""
+__version__ = "0.0.1"
 
 
+def dbg(exp):
+    """Call dbg with any variable or expression.
+
+    Calling debug will print out the content information (file, lineno) as wil as the
+    passed expression and what the expression is equal to::
+
+        from pydbg import dbg
+
+        a = 2
+        b = 5
+
+        dbg(a+b)
+
+        def square(x: int) -> int:
+            return x * x
+
+        dbg(square(a))
+
+    """
+
+    for i in reversed(inspect.stack()):
+        if "dbg" in i.code_context[0]:
+            var_name = i.code_context[0][
+                i.code_context[0].find("(") + 1 : i.code_context[0].find(")")
+            ]
+            print(f"[{i.filename}:{i.lineno}] {var_name} = {exp}")
+            break
