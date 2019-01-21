@@ -1,4 +1,4 @@
-# pydbg 🐛
+# pydbg 🐛 [![Build Status](https://travis-ci.com/tylerwince/pydbg.svg?branch=master)](https://travis-ci.com/tylerwince/pydbg)
 
 `pydbg` is an implementation of the Rust2018 builtin debugging macro `dbg`.
 
