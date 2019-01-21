@@ -10,4 +10,4 @@ install:
   - pip install pydbg
 # command to run tests
 script:
-  - pytest
+  - pytest -vv
