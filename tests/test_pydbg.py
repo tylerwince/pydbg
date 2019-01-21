@@ -4,9 +4,6 @@ from pydbg import dbg
 from contextlib import redirect_stdout
 
 
-def something():
-    pass
-
 cwd = os.getcwd()
 
 def test_variables():
@@ -25,12 +22,12 @@ def test_variables():
         dbg(NoneType)
         dbg(add(1, 2))
 
-    want = f"""[{cwd}/tests/test_pydbg.py:21] intType = 2
-[{cwd}/tests/test_pydbg.py:22] floatType = 2.1
-[{cwd}/tests/test_pydbg.py:23] strType = mystring
-[{cwd}/tests/test_pydbg.py:24] boolType = True
-[{cwd}/tests/test_pydbg.py:25] NoneType = None
-[{cwd}/tests/test_pydbg.py:26] add(1, 2) = 3
+    want = f"""[{cwd}/tests/test_pydbg.py:18] intType = 2
+[{cwd}/tests/test_pydbg.py:19] floatType = 2.1
+[{cwd}/tests/test_pydbg.py:20] strType = mystring
+[{cwd}/tests/test_pydbg.py:21] boolType = True
+[{cwd}/tests/test_pydbg.py:22] NoneType = None
+[{cwd}/tests/test_pydbg.py:23] add(1, 2) = 3
 """
 
     assert out.getvalue()  == want
