@@ -32,10 +32,8 @@ def test_variables():
 [{cwd}/tests/test_pydbg.py:25] NoneType = None
 [{cwd}/tests/test_pydbg.py:26] add(1, 2) = 3
 """
-    outstr = out.getvalue()
-    print(outstr)
-    import pdb; pdb.set_trace()
-    assert outstr  == want
+
+    assert out.getvalue()  == want
 
 
 def add(x, y):
