@@ -1,10 +1,11 @@
-# pydbg
----
+# pydbg 🐛
 
-`pydbg` is an implementation of the Rust2018 builtin debugging helper function `dbg`.
+`pydbg` is an implementation of the Rust2018 builtin debugging macro `dbg`.
 
 The purpose of this package is to provide a better and more effective workflow for
-people who are "print debuggers". Using this package changes your workflow from:
+people who are "print debuggers".
+
+## The old way:
 
 ```python
 
@@ -19,14 +20,14 @@ def square(x: int) -> int:
 print(f"a squared with my function = {square(a)}")
 
 ```
-which outputs:
+outputs:
 
 ```
 a + b after instatiated = 5
-a squared with my functioin = 4
+a squared with my function = 4
 ```
 
-to a much simpler and more informative workflow:
+## The _new_ (and better) way
 
 ```python
 
@@ -54,5 +55,7 @@ which outputs:
 The next features that are planned are:
 
 [ ] Fancy Mode (display information about the whole callstack)
+
 [ ] Performance Optimizations
+
 [ ] Typing information
