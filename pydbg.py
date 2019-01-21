@@ -1,7 +1,7 @@
 """pydbg is an implementation of the Rust2018 builtin `dbg` for Python."""
 import inspect
 
-__version__ = "0.0.4"
+__version__ = "0.1.0"
 
 
 def dbg(exp):
