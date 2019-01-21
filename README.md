@@ -6,6 +6,7 @@ The purpose of this package is to provide a better and more effective workflow f
 people who are "print debuggers".
 
 `pip install pydbg`
+
 `from pydbg import dbg`
 
 ## The old way:
