@@ -42,8 +42,7 @@ def square(x: int) -> int:
 dbg(square(a))
 
 ```
-
-which outputs:
+outputs:
 
 ```
 [testfile.py:4] a+b = 5
@@ -54,8 +53,6 @@ which outputs:
 
 The next features that are planned are:
 
-[ ] Fancy Mode (display information about the whole callstack)
-
-[ ] Performance Optimizations
-
-[ ] Typing information
+- [ ] Fancy Mode (display information about the whole callstack)
+- [ ] Performance Optimizations
+- [ ] Typing information
