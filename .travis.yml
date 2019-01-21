@@ -2,15 +2,19 @@ language: python
 sudo: required
 dist: xenial
 python:
-  - "3.6"
-  - "3.6-dev"  # 3.6 development branch
-  - "3.7"
-  - "3.7-dev"  # 3.7 development branch
-  - "3.8-dev"  # 3.8 development branch
-  - "nightly"
-# command to install dependencies
+- '3.6'
+- 3.6-dev
+- '3.7'
+- 3.7-dev
+- 3.8-dev
+- nightly
 install:
-  - pip install -e .
-# command to run tests
+- pip install -e .
 script:
-  - pytest -vv
+- pytest -vv
+deploy:
+  provider: pypi
+  user: tylerwince
+  password:
+    secure: glnQhm+ctjIhyVZzIe8KqmmhimxFAK7lErg23mT9zuurwHxgID5fQ7W4txL+rgecIHopZxko6tgvKOctPLxuMChkFnZF94Cpxj80xvc2yXHzorHThu+UA4HiBS0CznwFeFDgrizBIK/vDXIKIROL1RKlgaBIFKlUw8JzZV6lotmJApe9y/oqxIh7vgq8XVX51cf4s6InJ5Pgy78iEIYvzEBoTYuhLQ1MpFwCkjM9VX58p8G66AOFnpMN5lECvQjgIhBUMLhdHwP+VqOh6f3KoDC3UvNologtRu6U5TNSUjeTvtQ1Zoh/Hl2+Ea6JiQEYCH15qU7twrp/L+Kwfuj6KavETZRUBTdPQMWt7Wn2iVUlaLIDMOq8KIBgp8Ox6XYan7xRkMC0zDt7zbmmoT9aIkpPFmkUPcdWaZfpoObBuXb0hxeBDo3+X0Q7R9zcwDwbzjaluVengNl8Q94ZpGZ00aXJCJvkSyFyi6KXlaTpOiULJLA/xkk8hzFOVPvkElESRZpGryIH0M+Zg+mVvGQPy8HzzfS5zWVweHxm6aXaL0MTzyDi8/X/OswZz4g6FRCjlZjKG0iOnruRbCWgQs0r3f2fuF/dssH+JhoPsvMmm0VTJujE+DLAfU2F8BMSZeiGCyBsFy3UVWNi0/dR7n7xbkUcDXK879EQWjwMqGJjaqI=
+  skip_existing: true
