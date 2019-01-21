@@ -29,6 +29,7 @@ def dbg(exp):
             var_name = i.code_context[0][
                 i.code_context[0].find("(")
                 + 1 : len(i.code_context[0])
+                - 1
                 - i.code_context[0][::-1].find(")")
             ]
             print(f"[{i.filename}:{i.lineno}] {var_name} = {exp}")
