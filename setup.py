@@ -12,7 +12,7 @@ from shutil import rmtree
 from setuptools import find_packages, setup, Command
 
 
-def get_version(fname="__init__.py"):
+def get_version(fname="pydbg.py"):
     with open(fname) as f:
         for line in f:
             if line.startswith("__version__"):
@@ -110,9 +110,9 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=find_packages(exclude=('tests',)),
+    # packages=find_packages(exclude=('tests',)),
     # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
+    py_modules=['pydbg'],
 
     # entry_points={
     #     'console_scripts': ['mycli=mymodule:cli'],
