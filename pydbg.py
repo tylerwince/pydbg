@@ -25,12 +25,9 @@ def dbg(exp):
     """
 
     for i in reversed(inspect.stack()):
-        if "dbg" in i.code_context[0]:
-            var_name = i.code_context[0][
-                i.code_context[0].find("(")
-                + 1 : len(i.code_context[0])
-                - 1
-                - i.code_context[0][::-1].find(")")
-            ]
-            print(f"[{i.filename}:{i.lineno}] {var_name} = {exp}")
+        ctx = i.code_context[0]
+        if "dbg" in ctx:
+            print(
+                f"[{i.filename}:{i.lineno}] {ctx[ctx.find('(') + 1 : ctx.rfind(')')]} = {exp}"
+            )
             break
