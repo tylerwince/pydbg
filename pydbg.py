@@ -1,7 +1,7 @@
 """pydbg is an implementation of the Rust2018 builtin `dbg` for Python."""
 import inspect
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 def dbg(exp):
@@ -31,3 +31,4 @@ def dbg(exp):
                 f"[{i.filename}:{i.lineno}] {ctx[ctx.find('(') + 1 : ctx.rfind(')')]} = {exp}"
             )
             break
+    return exp
