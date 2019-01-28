@@ -7,27 +7,40 @@ from contextlib import redirect_stdout
 cwd = os.getcwd()
 
 def test_variables():
-    intType = 2
-    floatType = 2.1
-    strType = "mystring"
-    boolType = True
     NoneType = None
+    boolType = True
+    intType = 2
+    floatType = 3.4
+    strType = "mystring"
+    strType1 = "None"
+    strType2 = "True"
+    strType3 = "2"
+    strType4 = "3.4"
 
     out = io.StringIO()
     with redirect_stdout(out):
+        dbg(NoneType)
+        dbg(boolType)
         dbg(intType)
         dbg(floatType)
         dbg(strType)
-        dbg(boolType)
-        dbg(NoneType)
-        dbg(add(1, 2))
+        dbg(strType1)
+        dbg(strType2)
+        dbg(strType3)
+        dbg(strType4)
+        dbg(add(5, 6))
 
-    want = f"""[{cwd}/tests/test_pydbg.py:18] intType = 2
-[{cwd}/tests/test_pydbg.py:19] floatType = 2.1
-[{cwd}/tests/test_pydbg.py:20] strType = mystring
-[{cwd}/tests/test_pydbg.py:21] boolType = True
+    want = f"""\
 [{cwd}/tests/test_pydbg.py:22] NoneType = None
-[{cwd}/tests/test_pydbg.py:23] add(1, 2) = 3
+[{cwd}/tests/test_pydbg.py:23] boolType = True
+[{cwd}/tests/test_pydbg.py:24] intType = 2
+[{cwd}/tests/test_pydbg.py:25] floatType = 3.4
+[{cwd}/tests/test_pydbg.py:26] strType = 'mystring'
+[{cwd}/tests/test_pydbg.py:27] strType1 = 'None'
+[{cwd}/tests/test_pydbg.py:28] strType2 = 'True'
+[{cwd}/tests/test_pydbg.py:29] strType3 = '2'
+[{cwd}/tests/test_pydbg.py:30] strType4 = '3.4'
+[{cwd}/tests/test_pydbg.py:31] add(5, 6) = 11
 """
 
     assert out.getvalue()  == want
