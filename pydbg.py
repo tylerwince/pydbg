@@ -28,7 +28,7 @@ def dbg(exp):
         ctx = i.code_context[0]
         if "dbg" in ctx:
             print(
-                f"[{i.filename}:{i.lineno}] {ctx[ctx.find('(') + 1 : ctx.rfind(')')]} = {exp}"
+                f"[{i.filename}:{i.lineno}] {ctx[ctx.find('(') + 1 : ctx.rfind(')')]} = {exp!r}"
             )
             break
     return exp
