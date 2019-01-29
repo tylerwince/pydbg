@@ -60,3 +60,12 @@ The next features that are planned are:
 - [ ] Fancy Mode (display information about the whole callstack)
 - [ ] Performance Optimizations
 - [ ] Typing information
+
+## CONTRIBUTORS:
+
+Thanks to everyone who has submitted an issue or thoughts on this project.
+Special thanks to those who have submitted a PR to make this project better for everyone:
+
+- [besfahbod](https://github.com/besfahbod)
+- [tqhesilva](https://github.com/tqhdesilva)
+
