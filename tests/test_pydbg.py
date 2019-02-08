@@ -1,10 +1,12 @@
-import os
 import io
+import os
+from contextlib import redirect_stderr
+
 from pydbg import dbg
-from contextlib import redirect_stdout
 
 
-cwd = os.getcwd()
+CWD = os.getcwd()
+
 
 def test_variables():
     NoneType = None
@@ -18,7 +20,7 @@ def test_variables():
     strType4 = "3.4"
 
     out = io.StringIO()
-    with redirect_stdout(out):
+    with redirect_stderr(out):
         dbg(NoneType)
         dbg(boolType)
         dbg(intType)
@@ -29,23 +31,19 @@ def test_variables():
         dbg(strType3)
         dbg(strType4)
         dbg(add(5, 6))
-
-    want = f"""\
-[{cwd}/tests/test_pydbg.py:22] NoneType = None
-[{cwd}/tests/test_pydbg.py:23] boolType = True
-[{cwd}/tests/test_pydbg.py:24] intType = 2
-[{cwd}/tests/test_pydbg.py:25] floatType = 3.4
-[{cwd}/tests/test_pydbg.py:26] strType = 'mystring'
-[{cwd}/tests/test_pydbg.py:27] strType1 = 'None'
-[{cwd}/tests/test_pydbg.py:28] strType2 = 'True'
-[{cwd}/tests/test_pydbg.py:29] strType3 = '2'
-[{cwd}/tests/test_pydbg.py:30] strType4 = '3.4'
-[{cwd}/tests/test_pydbg.py:31] add(5, 6) = 11
+    assert out.getvalue() == f"""\
+[{CWD}/tests/test_pydbg.py:24] NoneType = None
+[{CWD}/tests/test_pydbg.py:25] boolType = True
+[{CWD}/tests/test_pydbg.py:26] intType = 2
+[{CWD}/tests/test_pydbg.py:27] floatType = 3.4
+[{CWD}/tests/test_pydbg.py:28] strType = 'mystring'
+[{CWD}/tests/test_pydbg.py:29] strType1 = 'None'
+[{CWD}/tests/test_pydbg.py:30] strType2 = 'True'
+[{CWD}/tests/test_pydbg.py:31] strType3 = '2'
+[{CWD}/tests/test_pydbg.py:32] strType4 = '3.4'
+[{CWD}/tests/test_pydbg.py:33] add(5, 6) = 11
 """
-
-    assert out.getvalue()  == want
 
 
 def add(x, y):
     return x + y
-
