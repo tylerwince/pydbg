@@ -31,17 +31,14 @@ def dbg(exp: _ExpType) -> _ExpType:
 
     """
 
-    for frame in inspect.stack():
-        line = frame.code_context[0]
-        if "dbg" in line:
-            start = line.find('(') + 1
-            end =  line.rfind(')')
-            if end == -1:
-                end = len(line)
-            print(
-                f"[{frame.filename}:{frame.lineno}] {line[start:end]} = {exp!r}",
-                file=sys.stderr,
-            )
-            break
+    line = inspect.stack()[1].code_context[0]
+    start = line.find('(') + 1
+    end =  line.rfind(')')
+    if end == -1:
+        end = len(line)
+    print(
+        f"[{frame.filename}:{frame.lineno}] {line[start:end]} = {exp!r}",
+        file=sys.stderr,
+    )
 
     return exp
