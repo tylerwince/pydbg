@@ -31,7 +31,8 @@ def dbg(exp: _ExpType) -> _ExpType:
 
     """
 
-    line = inspect.stack()[1].code_context[0]
+    frame = inspect.stack()[1]
+    line = frame.code_context[0]
     start = line.find('(') + 1
     end =  line.rfind(')')
     if end == -1:
