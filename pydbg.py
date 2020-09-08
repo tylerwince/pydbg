@@ -1,4 +1,4 @@
-"""pydbg is an implementation of the Rust2018 builtin `dbg` for Python."""
+"""pydbg is an implementation of the Rust builtin `dbg!` for Python."""
 
 import inspect
 import sys
@@ -14,8 +14,8 @@ _ExpType = typing.TypeVar('_ExpType')
 def dbg(exp: _ExpType) -> _ExpType:
     """Call dbg with any variable or expression.
 
-    Calling debug will print out the content information (file, lineno) as wil as the
-    passed expression and what the expression is equal to::
+    Calling dbg will print to stderr the current filename and lineno,
+    as well as the passed expression and what the expression evaluates to:
 
         from pydbg import dbg
 
