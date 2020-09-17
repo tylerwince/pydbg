@@ -1,13 +1,11 @@
 # pydbg 🐛 [![Build Status](https://travis-ci.org/tylerwince/pydbg.svg?branch=master)](https://travis-ci.org/tylerwince/pydbg)
 
-`pydbg` is an implementation of the Rust2018 builtin debugging macro `dbg`.
+`pydbg` is an implementation of the [Rust builtin debugging macro `dbg`](https://rust-lang.github.io/rfcs/2361-dbg-macro.html)
 
 The purpose of this package is to provide a better and more effective workflow for
 people who are "print debuggers".
 
 `pip install pydbg`
-
-`from pydbg import dbg`
 
 ## The old way:
 
@@ -34,6 +32,7 @@ a squared with my function = 4
 ## The _new_ (and better) way
 
 ```python
+from pydbg import dbg
 
 a = 2
 b = 3
