@@ -1,0 +1,4 @@
+include RELEASING.md
+include CHANGELOG.md
+include scripts/check_release_tag.py
+include scripts/check_pypi_release.py
