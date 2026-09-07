@@ -1,35 +1,20 @@
-# pydbg 🐛 [![Build Status](https://travis-ci.org/tylerwince/pydbg.svg?branch=master)](https://travis-ci.org/tylerwince/pydbg)
+# pydbg 🐛
 
-`pydbg` is an implementation of the [Rust builtin debugging macro `dbg`](https://rust-lang.github.io/rfcs/2361-dbg-macro.html)
+[![CI](https://github.com/tylerwince/pydbg/actions/workflows/ci.yml/badge.svg)](https://github.com/tylerwince/pydbg/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/pydbg.svg)](https://pypi.org/project/pydbg/)
+[![Python](https://img.shields.io/pypi/pyversions/pydbg.svg)](https://pypi.org/project/pydbg/)
 
-The purpose of this package is to provide a better and more effective workflow for
-people who are "print debuggers".
+`pydbg` is an expression-aware implementation of
+[Rust's `dbg!` macro](https://doc.rust-lang.org/std/macro.dbg.html) for Python.
+It is a small tool for people who debug with print statements.
 
-`pip install pydbg`
-
-## The old way:
-
-```python
-
-a = 2
-b = 3
-
-print(f"a + b after instatiated = {a+b}")
-
-def square(x: int) -> int:
-    return x * x
-
-print(f"a squared with my function = {square(a)}")
-
-```
-outputs:
-
-```
-a + b after instatiated = 5
-a squared with my function = 4
+```console
+python -m pip install pydbg
 ```
 
-## The _new_ (and better) way
+Python 3.10 through 3.14 are supported.
+
+## Usage
 
 ```python
 from pydbg import dbg
@@ -37,34 +22,75 @@ from pydbg import dbg
 a = 2
 b = 3
 
-dbg(a+b)
+result = dbg(a + b)
 
-def square(x: int) -> int:
-    return x * x
-
-dbg(square(a))
-
-```
-outputs:
-
-```
-[testfile.py:4] a+b = 5
-[testfile.py:9] square(a) = 4
+assert result == 5
 ```
 
-### This project is a work in progress and all feedback is appreciated.
+`dbg` writes the source location, expression, and value to standard error:
 
-The next features that are planned are:
+```text
+[example.py:6] a + b = 5
+```
 
-- [ ] Fancy Mode (display information about the whole callstack)
-- [ ] Performance Optimizations
-- [ ] Typing information
+The original value is returned, so `dbg` can be inserted inside a larger
+expression:
 
-## CONTRIBUTORS:
+```python
+total = int(1 + dbg(2))
+```
+
+```text
+[example.py:1] 2 = 2
+```
+
+Nested, multiline, repeated, comprehension, lambda, and function calls are
+resolved against the exact executing AST node. When source is unavailable, as
+in some REPL and `python -c` sessions, or the call cannot be matched reliably,
+as with callbacks and argument unpacking, `pydbg` still reports the location
+and value with an explicit fallback:
+
+```text
+[<string>:1] <expression unavailable> = 2
+```
+
+## Logging integration
+
+Use `format_dbg` when another system should handle the output:
+
+```python
+import logging
+
+from pydbg import format_dbg
+
+logging.basicConfig(level=logging.DEBUG)
+value = 42
+logging.debug("%s", format_dbg(value))
+```
+
+It returns the same formatted message without writing to standard error.
+
+## Development
+
+```console
+python -m pip install --editable ".[dev]"
+python -m pytest
+python -m build
+python -m twine check dist/*
+```
+
+See [RELEASING.md](RELEASING.md) for the Trusted Publishing release flow.
+See [CHANGELOG.md](CHANGELOG.md) for release notes and compatibility changes.
+
+## Contributors
 
 Thanks to everyone who has submitted an issue or thoughts on this project.
-Special thanks to those who have submitted a PR to make this project better for everyone:
+Special thanks to those who have submitted a PR to make this project better
+for everyone:
 
 - [besfahbod](https://github.com/besfahbod)
-- [tqhesilva](https://github.com/tqhdesilva)
+- [tqhdesilva](https://github.com/tqhdesilva)
 
+## License
+
+MIT. See [LICENSE](LICENSE).

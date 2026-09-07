@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydbg"
+dynamic = ["version"]
+description = "An expression-aware implementation of Rust's dbg! macro for Python."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Tyler Wince", email = "tylerwince@gmail.com" },
+]
+keywords = ["debug", "debugging", "print", "rust"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = [
+    "executing>=2.2.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3",
+]
+dev = [
+    "build>=1.2",
+    "pytest>=8.3",
+    "twine>=6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/tylerwince/pydbg"
+Issues = "https://github.com/tylerwince/pydbg/issues"
+Source = "https://github.com/tylerwince/pydbg"
+
+[tool.setuptools]
+py-modules = ["pydbg"]
+
+[tool.setuptools.dynamic]
+version = { attr = "pydbg.__version__" }
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
